@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:anamnesis/presentation/shared/custom_statement.dart';
-import 'package:anamnesis/presentation/shared/custom_text_form_field.dart';
 import 'package:anamnesis/presentation/shared/custom_title.dart';
 import 'package:anamnesis/presentation/shared/custom_button.dart';
 
@@ -64,12 +63,12 @@ class _FillForm extends StatelessWidget {
             ),
           ),
           SizedBox(height: 12),
-          CustomTextFormField(),
+       
           SizedBox(height: 12),
           RichText(
             text: TextSpan(
               text:
-                  '¿¿Le ha dicho al médico que tiene algún problema en los huesos o en las articulaciones, que pueda desfavorecer con el ejercicio?*?',
+                  '¿Le ha dicho al médico que tiene algún problema en los huesos o en las articulaciones, que pueda desfavorecer con el ejercicio?*?',
               style: TextStyle(
                 decoration: TextDecoration.none,
                 color: Color(0xFFFFFFFF),
@@ -89,12 +88,11 @@ class _FillForm extends StatelessWidget {
             ),
           ),
           SizedBox(height: 12),
-          CustomTextFormField(),
+       
           SizedBox(height: 12),
           CustomButton(
             text: 'Siguiente',
             onPress: () {
-              print('Botón presionado');
             },
           )
         ],

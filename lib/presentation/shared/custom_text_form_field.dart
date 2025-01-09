@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField({super.key});
+  
+
+  final String? hint;
+  final TextEditingController fieldController;
+
+  const CustomTextFormField({super.key, this.hint = 'Escribe aqui', required this.fieldController});
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -16,17 +23,11 @@ class CustomTextFormField extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: TextFormField(
-        onChanged: (value) {
-          print('value: $value');
-        },
-        validator: (value) {
-          print('value: $value');
-          return null;
-        },
+        controller: fieldController,
         decoration: InputDecoration(
           enabledBorder: border,
-          focusedBorder: border,
-          hintText: 'Escribe aquí',
+          focusedBorder: border.copyWith(borderSide: BorderSide(color: Colors.white)),
+          hintText: hint,
           hintStyle: TextStyle(color: Colors.white70),
         ),
       ),

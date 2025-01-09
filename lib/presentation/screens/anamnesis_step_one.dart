@@ -35,26 +35,47 @@ class _FillForm extends StatefulWidget {
 
 class _FillFormState extends State<_FillForm> {
   final _formKey = GlobalKey<FormState>();
+  final _fieldOneController = TextEditingController();
+  final _fieldTwoController = TextEditingController();
+
   bool isButtonEnabled = false;
 
   void _updateButtonState() {
     setState(() {
-      isButtonEnabled = _formKey.currentState?.validate() ?? false;
+      final isFieldOneValid = _fieldOneController.text.isNotEmpty;
+      final isFieldTwoValid = _fieldTwoController.text.isNotEmpty;
+
+      isButtonEnabled = isFieldOneValid && isFieldTwoValid;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _fieldOneController.addListener(_updateButtonState);
+    _fieldTwoController.addListener(_updateButtonState);
+  }
+
+  @override
+  void dispose() {
+    _fieldOneController.dispose();
+    _fieldTwoController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Form(
-       key: _formKey,
-      onChanged: _updateButtonState,
+      key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _Field(),
-          SizedBox(
-            height: 380,
+          _Field(
+            fieldOneController: _fieldOneController,
+            fieldTwoController: _fieldTwoController,
           ),
+          const SizedBox(height: 380),
           CustomButton(
             isDisabled: !isButtonEnabled,
             text: 'Siguiente',
@@ -69,6 +90,14 @@ class _FillFormState extends State<_FillForm> {
 }
 
 class _Field extends StatelessWidget {
+  final TextEditingController fieldOneController;
+  final TextEditingController fieldTwoController;
+
+  const _Field({
+    required this.fieldOneController,
+    required this.fieldTwoController,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -94,9 +123,11 @@ class _Field extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: 12),
-        CustomTextFormField(),
-        SizedBox(height: 12),
+        const SizedBox(height: 12),
+        CustomTextFormField(
+          fieldController: fieldOneController,
+        ),
+        const SizedBox(height: 12),
         RichText(
           text: TextSpan(
             text:
@@ -119,8 +150,10 @@ class _Field extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: 12),
-        CustomTextFormField(),
+        const SizedBox(height: 12),
+        CustomTextFormField(
+          fieldController: fieldTwoController,
+        ),
       ],
     );
   }
