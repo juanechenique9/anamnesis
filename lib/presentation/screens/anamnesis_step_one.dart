@@ -1,39 +1,78 @@
+import 'package:flutter/material.dart';
 import 'package:anamnesis/presentation/shared/custom_statement.dart';
 import 'package:anamnesis/presentation/shared/custom_text_form_field.dart';
 import 'package:anamnesis/presentation/shared/custom_title.dart';
-import 'package:flutter/material.dart';
+import 'package:anamnesis/presentation/shared/custom_button.dart';
+import 'package:go_router/go_router.dart';
 
 class AnamnesisStepOne extends StatelessWidget {
   const AnamnesisStepOne({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CustomTitle(),
-        Row(
-          children: [
-            Padding(
-              padding: EdgeInsets.fromLTRB(16, 54, 16, 0),
-              child: CustomStatement(),
-            ),
-          ],
-        ),
-        _FillForm()
-      ],
+    return Container(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CustomTitle(),
+          SizedBox(height: 40),
+          CustomStatement(),
+          SizedBox(height: 16),
+          _FillForm(),
+        ],
+      ),
     );
   }
 }
 
-class _FillForm extends StatelessWidget {
+class _FillForm extends StatefulWidget {
   const _FillForm();
+
+  @override
+  State<_FillForm> createState() => _FillFormState();
+}
+
+class _FillFormState extends State<_FillForm> {
+  final _formKey = GlobalKey<FormState>();
+  bool isButtonEnabled = false;
+
+  void _updateButtonState() {
+    setState(() {
+      isButtonEnabled = _formKey.currentState?.validate() ?? false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Form(
-        child: Padding(
-      padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
-      child: Column(children: [
+       key: _formKey,
+      onChanged: _updateButtonState,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _Field(),
+          SizedBox(
+            height: 380,
+          ),
+          CustomButton(
+            isDisabled: !isButtonEnabled,
+            text: 'Siguiente',
+            onPress: () {
+              context.push('/anamnesistwo');
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _Field extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
         RichText(
           text: TextSpan(
             text: '¿Ha tenido operaciones? ¿Cuáles y hace cuánto tiempo?',
@@ -55,12 +94,13 @@ class _FillForm extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: 8,),
+        SizedBox(height: 12),
         CustomTextFormField(),
-        SizedBox(height: 14,),
+        SizedBox(height: 12),
         RichText(
           text: TextSpan(
-            text: '¿Ha tenido operaciones? ¿Cuáles y hace cuánto tiempo?',
+            text:
+                '¿Tiene o tuvo alguna enfermedad diagnosticada o tratada por un médico?',
             style: TextStyle(
               decoration: TextDecoration.none,
               color: Color(0xFFFFFFFF),
@@ -79,9 +119,9 @@ class _FillForm extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: 8,),
-        CustomTextFormField()
-      ]),
-    ));
+        SizedBox(height: 12),
+        CustomTextFormField(),
+      ],
+    );
   }
 }

@@ -6,22 +6,28 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final border = OutlineInputBorder(
-      borderSide: BorderSide(color: Color(0xFFFFFFFF))
+     borderSide: BorderSide(
+        color: Colors.white,
+        width: 0.4,     
+      ),
+      borderRadius: BorderRadius.circular(0.9),
     );
 
     return Material(
-      color: Colors.transparent, // No afecta el fondo
+      color: Colors.transparent,
       child: TextFormField(
         onChanged: (value) {
           print('value: $value');
         },
         validator: (value) {
           print('value: $value');
-          return null; // Agrega validación si es necesario
+          return null;
         },
         decoration: InputDecoration(
           enabledBorder: border,
           focusedBorder: border,
+          hintText: 'Escribe aquí',
+          hintStyle: TextStyle(color: Colors.white70),
         ),
       ),
     );
