@@ -45,11 +45,19 @@ class _CustomSelectButtonState extends State<CustomSelectButton> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(1),
-                  side: BorderSide(color: selectedIndex == index ? Color(0xFF038BED) : Color(0xFF343642))
+                    borderRadius: BorderRadius.circular(1),
+                    side: BorderSide(
+                        color: selectedIndex == index
+                            ? Color(0xFF038BED)
+                            : Color(0xFF343642))),
+              ),
+              child: Text(
+                text,
+                style: TextStyle(
+                  color: Color(0xFFFFFFFF),
+                  fontFamily: 'Futura Bk BT Book',
                 ),
               ),
-              child: Text(text),
             ),
           ),
         );

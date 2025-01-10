@@ -6,7 +6,7 @@ class CustomTextFormField extends StatelessWidget {
   final String? hint;
   final TextEditingController fieldController;
 
-  const CustomTextFormField({super.key, this.hint = 'Escribe aqui', required this.fieldController});
+  const CustomTextFormField({super.key, this.hint = 'Escribe aquí', required this.fieldController});
 
 
 

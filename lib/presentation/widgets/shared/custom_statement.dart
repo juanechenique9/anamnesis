@@ -12,10 +12,10 @@ class CustomStatement extends StatelessWidget {
             style: TextStyle(
                 decoration: TextDecoration.none,
                 color: Color(0xFFFFFFFF),
-                fontFamily: 'FutuBkIt',
+                fontFamily: 'Futura Bk BT Book',
                 fontWeight: FontWeight.w500,
                 fontSize: 16,
-                height: 1.32)),
+                )),
         SizedBox(
           height: 8,
         ),
@@ -25,7 +25,7 @@ class CustomStatement extends StatelessWidget {
             style: TextStyle(
               decoration: TextDecoration.none,
               color: Color(0xFFFFFFFF),
-              fontFamily: 'FutuBkIt',
+              fontFamily: 'Futura Bk BT Book',
               fontWeight: FontWeight.w400,
               fontSize: 16,
               height: 1.5,

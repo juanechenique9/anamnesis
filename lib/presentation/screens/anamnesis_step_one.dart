@@ -106,7 +106,7 @@ class _Field extends StatelessWidget {
             style: TextStyle(
               decoration: TextDecoration.none,
               color: Color(0xFFFFFFFF),
-              fontFamily: 'FutuBkIt',
+              fontFamily: 'Futura Bk BT Book',
               fontWeight: FontWeight.w400,
               fontSize: 16,
               height: 1.5,
@@ -133,7 +133,7 @@ class _Field extends StatelessWidget {
             style: TextStyle(
               decoration: TextDecoration.none,
               color: Color(0xFFFFFFFF),
-              fontFamily: 'FutuBkIt',
+              fontFamily: 'Futura Bk BT Book',
               fontWeight: FontWeight.w400,
               fontSize: 16,
               height: 1.5,
