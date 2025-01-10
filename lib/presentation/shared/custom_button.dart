@@ -82,28 +82,8 @@ class _CustomButtonState extends State<CustomButton> {
   ButtonStyle getButtonStyle(BuildContext context) => ButtonStyle(
         minimumSize: WidgetStateProperty.all(Size.zero),
         padding: WidgetStateProperty.all(EdgeInsets.zero),
-        overlayColor: WidgetStateProperty.resolveWith((states) {
-          return Colors.transparent;
-        }),
-        shape: WidgetStateProperty.resolveWith(
-          (state) {
-            final border = RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(0.8),
-            );
-
-            if (state.isNotEmpty) {
-              final bool isFocused = state.contains(WidgetState.focused);
-
-              return border.copyWith(
-                  side: BorderSide(
-                color: isFocused ? Colors.blue : Colors.transparent,
-                strokeAlign: isFocused ? 4 : 0,
-                width: isFocused ? 2 : 0,
-              ));
-            }
-            return border;
-          },
-        ),
+        shape: WidgetStateProperty.all(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(1))),
         foregroundColor: WidgetStateProperty.resolveWith(
           (states) {
             if (states.isNotEmpty &&
