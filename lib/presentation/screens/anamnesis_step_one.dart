@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:anamnesis/presentation/shared/custom_statement.dart';
-import 'package:anamnesis/presentation/shared/custom_text_form_field.dart';
-import 'package:anamnesis/presentation/shared/custom_title.dart';
-import 'package:anamnesis/presentation/shared/custom_button.dart';
+import 'package:anamnesis/presentation/widgets/widgets.dart';
 import 'package:go_router/go_router.dart';
 
 class AnamnesisStepOne extends StatelessWidget {
@@ -11,7 +8,7 @@ class AnamnesisStepOne extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -66,6 +63,7 @@ class _FillFormState extends State<_FillForm> {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
     return Form(
       key: _formKey,
       child: Column(
@@ -75,7 +73,7 @@ class _FillFormState extends State<_FillForm> {
             fieldOneController: _fieldOneController,
             fieldTwoController: _fieldTwoController,
           ),
-          const SizedBox(height: 380),
+           SizedBox(height: screenHeight >= 2000 ? 380: 360),
           CustomButton(
             isDisabled: !isButtonEnabled,
             text: 'Siguiente',

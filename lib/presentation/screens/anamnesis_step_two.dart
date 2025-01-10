@@ -1,18 +1,14 @@
-import 'package:anamnesis/presentation/shared/custom_select_button.dart';
 import 'package:flutter/material.dart';
-import 'package:anamnesis/presentation/shared/custom_statement.dart';
-import 'package:anamnesis/presentation/shared/custom_title.dart';
-import 'package:anamnesis/presentation/shared/custom_button.dart';
+import 'package:anamnesis/presentation/widgets/widgets.dart';
+import 'package:go_router/go_router.dart';
 
 class AnamnesisStepTwo extends StatelessWidget {
   const AnamnesisStepTwo({super.key});
 
   @override
   Widget build(BuildContext context) {
-
-
     return Container(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -20,7 +16,9 @@ class AnamnesisStepTwo extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomTitle(),
+              CustomTitle(onPress:() {
+                context.pop();
+              },),
               SizedBox(height: 40),
               CustomStatement(),
               SizedBox(height: 16),
@@ -57,8 +55,22 @@ class _FillFormState extends State<_FillForm> {
     });
   }
 
+  void confirmForm(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        content: const Text('Gracias por diligenciar el formulario'),
+        actions: [
+          TextButton(onPressed: () => context.push('/'), child: const Text('Cerrar'))
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+     final screenHeight = MediaQuery.of(context).size.height;
     return Form(
       key: _formKey,
       child: Column(
@@ -117,13 +129,13 @@ class _FillFormState extends State<_FillForm> {
             options: ['Sí', 'No'],
             onSelectionChanged: (index) => _updateSelection(2, index),
           ),
-          SizedBox(height: 380),
+          SizedBox(height: screenHeight >= 2000 ? 380: 360),
           CustomButton(
             isDisabled: !isButtonEnabled,
             text: 'Siguiente',
             onPress: () {
               if (isButtonEnabled) {
-                
+               confirmForm(context);
               }
             },
           )
@@ -132,3 +144,4 @@ class _FillFormState extends State<_FillForm> {
     );
   }
 }
+
