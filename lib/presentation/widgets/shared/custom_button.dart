@@ -24,26 +24,15 @@ class CustomButton extends StatefulWidget {
   State<CustomButton> createState() => _CustomButtonState();
 }
 
+
+
 class _CustomButtonState extends State<CustomButton> {
-  late WidgetStatesController stateController;
 
-  @override
-  void initState() {
-    super.initState();
-    stateController = WidgetStatesController();
-  }
-
-  @override
-  void dispose() {
-    stateController.dispose();
-    super.dispose();
-  }
-
+ 
   @override
   Widget build(BuildContext context) {
     return TextButton(
       key: widget.key,
-      statesController: stateController,
       style: getButtonStyle(context),
       onPressed:
           !widget.isDisabled && widget.onPress != null ? widget.onPress : null,
@@ -78,6 +67,9 @@ class _CustomButtonState extends State<CustomButton> {
       ),
     );
   }
+
+  /// Configura el estilo del boton según su estado
+  /// El color overlay es transparente para no mostrar ningún color adicional sobre los colores de background.
 
   ButtonStyle getButtonStyle(BuildContext context) => ButtonStyle(
         minimumSize: WidgetStateProperty.all(Size.zero),

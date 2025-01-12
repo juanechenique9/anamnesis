@@ -24,6 +24,9 @@ class _CustomSelectButtonState extends State<CustomSelectButton> {
     widget.onSelectionChanged(index);
   }
 
+  //Permite crear el listado de opciones de acuerdo a la pregunta
+  // Se obtiene el index de cada elemento en la lista
+
   @override
   Widget build(BuildContext context) {
     return Row(

@@ -6,6 +6,9 @@ class CustomTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    /// Se valida si el dispositivo movil Apple que tienen Notch
+    /// Esto para que el titulo se adapte a todas las pantallas posibles.
     final hasNotch = MediaQuery.of(context).viewPadding.top > 35;
 
     return Material(
